@@ -9,6 +9,7 @@ import (
 	"nofx/store"
 	"nofx/trader"
 	"sort"
+	"strings"
 	"sync"
 	"time"
 )
@@ -609,6 +610,11 @@ func (tm *TraderManager) LoadTradersFromStore(st *store.Store) error {
 		// Add to TraderManager (coinPoolURL/oiTopURL already obtained from strategy config)
 		err = tm.addTraderFromStore(traderCfg, aiModelCfg, exchangeCfg, st)
 		if err != nil {
+			// If trader has no strategy configured, treat as informational and skip
+			if strings.Contains(err.Error(), "has no strategy configured") {
+				logger.Infof("⚠️ Trader %s has no strategy configured, skipping", traderCfg.Name)
+				continue
+			}
 			logger.Infof("❌ Failed to add trader %s: %v", traderCfg.Name, err)
 			continue
 		}

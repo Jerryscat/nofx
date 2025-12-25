@@ -605,7 +605,7 @@ func calculateLongerTermData(klines []Kline) *LongerTermData {
 
 // getOpenInterestData retrieves OI data
 func getOpenInterestData(symbol string) (*OIData, error) {
-	url := fmt.Sprintf("https://fapi.binance.com/fapi/v1/openInterest?symbol=%s", symbol)
+	url := fmt.Sprintf("https://testnet.binancefuture.com/fapi/v1/openInterest?symbol=%s", symbol)
 
 	apiClient := NewAPIClient()
 	resp, err := apiClient.client.Get(url)
@@ -650,7 +650,7 @@ func getFundingRate(symbol string) (float64, error) {
 	}
 
 	// Cache expired or doesn't exist, call API
-	url := fmt.Sprintf("https://fapi.binance.com/fapi/v1/premiumIndex?symbol=%s", symbol)
+	url := fmt.Sprintf("https://testnet.binancefuture.com/fapi/v1/premiumIndex?symbol=%s", symbol)
 
 	apiClient := NewAPIClient()
 	resp, err := apiClient.client.Get(url)

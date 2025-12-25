@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	binanceFuturesKlinesURL = "https://fapi.binance.com/fapi/v1/klines"
+	binanceFuturesKlinesURL = "https://testnet.binancefuture.com/fapi/v1/klines"
 	binanceMaxKlineLimit    = 1500
 )
 
